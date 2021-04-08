@@ -1,4 +1,4 @@
-# Lingo基础
+# 第一章 Lingo基础
 
 ### 一、Lingo基本界面
 
@@ -9,21 +9,21 @@
 **Step3：**界面自动弹出名为“Lingo Model-Lingo 1”的窗口，用于书写代码
 
 **Step4：**（Ctrl+鼠标滚轮【放大缩小】）
-以解方程的题目：x+1=2为例，写完代码后，点击“![img](file:///C:\Users\山山大~1\AppData\Local\Temp\SGPicFaceTpBq\3352\0015BB99.png)”，运行程序。
+以解方程的题目：x+1=2为例，写完代码后，点击![img](00D9B101.png)，运行程序。
 
 **Step5：**首先Lingo会弹出一个名为“Solver Status”的对话框，它显示运行时间。
 
-![image-20210326181732242](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326181732242.png)
+![image-20210326181732242](image-20210326181732242.png)
 
 **Step6:**读取到运行的时间是0时0分0秒
 
-![image-20210326181822757](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326181822757.png)
+![image-20210326181822757](image-20210326181822757.png)
 
 **Step7:**然后弹出一个名为“Solution Report”的界面。
-![image-20210326182042748](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326182042748.png)
+![image-20210326182042748](image-20210326182042748.png)
 
 **Step8：**由此可知变量x的数值为1。
-![image-20210326182334591](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326182334591.png)
+![image-20210326182334591](image-20210326182334591.png)
 
 **Step9：**如果是求解线性规划的话，目标值也会在“Solution Report”中给出，到时在说。
 
@@ -49,7 +49,7 @@ $$
 2* x+2* y+1=5;
 3* x-5* y+5=3;
 
-![image-20210326184322655](C:\Users\山山大魔王\AppData\Roaming\Typora\typora-user-images\image-20210326184322655.png)
+![image-20210326184322655](image-20210326184322655.png)
 
 ### 三、lingo变量
 
@@ -95,7 +95,7 @@ $$
 某工厂有两条生产线，分别用来生产M和P两种型号的产品，利润分别为200元/个和300元/个，生产线的最大生产能力分别为每日100 和120，生产线每生产一个M产品需要1个劳动日(1个工人工作8小时称为1个劳动日)进行调试、检测等工作，而每个P产品需要2个劳动日，该厂工人每天共计能提供160劳动日，假如原材料等其他条件不受限制，问应如何安排生产计划，才能使获得的利润最大?
 
 <font color='red'>【解】</font>设两种产品的生产量分别为x和x，则该问题的数学模型为:
-目标函数: max z= 200x_1 + 300x_2,
+目标函数: $max z= 200x_1 + 300x_2$,
 约束条件为:
 $$
 \begin{cases}x_1 \leq 100
@@ -106,11 +106,11 @@ $$
 $$
 由lingo信息可知，运行时间依旧0秒，目标值为29000，此时x_1是100，x_2是30。
 
-![image-20210326192709585](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326192709585.png)
+![image-20210326192709585](image-20210326192709585.png)
 
 
 
-# Lingo入门
+# 第二章 Lingo入门
 
 ### 一、例题引入
 
@@ -143,7 +143,7 @@ s.t.
 \end{cases}
 $$
 
-![image-20210326194835418](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326194835418.png)
+![image-20210326194835418](image-20210326194835418.png)
 
 点评：太过笨拙
 所以将要学习Lingo中的“集合”
@@ -174,7 +174,7 @@ plant工厂最后面出现的x和y,都是lx3的矩阵。
 
 
 
-![image-20210326195532615](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326195532615.png)
+![image-20210326195532615](image-20210326195532615.png)
 
 <font color='cornflowerblue'>【例1】</font>
 
@@ -297,14 +297,160 @@ $$
 
 <font color='cornflowerblue'>【for与sum出现的标志】</font>
 :one:约束条件后面有 i=1,2,3… ，一定在最后套上for。
-:two:约束条件前面是求和符号![image-20210326205239160](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326205239160.png)，一定在中间加上sum。
+:two:约束条件前面是求和符号$\sum_{i=1}^5x_i$，一定在中间加上sum。
 
-![image-20210326205327215](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326205327215.png)
 
-![image-20210326205338492](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326205338492.png)
 
-![image-20210326205351829](C:\Users\山山大魔王\Desktop\shan\lingo\image-20210326205351829.png)
+【例】已知模型如下，其中a_i = i , i = 1 , 2 , …… ，5，，请编程求解：
+
+程序如下：
+
+```
+model:
+
+sets:
+gc/1..5/:a,x;
+endsts
+
+data:
+a = 1,2,3,4,5;
+enddata
+
+max = S;
+@for(gc(i):a(i)*x(i) = S);
+@sum(gc(i):x(i)) = 5000;
+
+end
+```
+
+PS：使用了矩阵工厂创建矩阵后，整个程序需用<font color='cornflowerblue'> model:</font>和 <font color='cornflowerblue'>end</font> 包起来。
+
+
 
 ### 三、工厂合并
 
-30:00
+先来看看例子：
+
+```
+sets:
+factory /1..6/ : a;
+plant /1..8/ : d;
+Cooperation(factory,plant) : c, x;
+endsets
+```
+
+以上程序可以得到以下结论：
+① Cooperation 大工厂是由 factory 和 plant 两家小工厂合并而办，可生产 6 × 8 的矩阵。
+②a 是 1 × 6 的矩阵，d 是 1 × 8 的矩阵，c 和 x 都是 6 × 8 的矩阵。
+③ 如果将 `Cooperation(factory,plant)`中的 factory 与 plant 调换位置，则生产 8 × 6 的矩阵。
+④ 工厂合并的名字 Cooperation 是随便起的，矩阵的名字 c 和 x 也是随便起的。
+
+**3.2 矩阵的赋值**
+
+```
+data:
+c=6,2,6,7,4,2,5,8
+ 4,9,5,3,8,5,8,2
+ 5,2,1,9,7,4,3,3
+ 7,6,7,3,9,2,7,1
+ 2,3,9,5,7,2,6,5
+ 5,5,2,2,8,1,4,3;
+enddata
+```
+
+**3.3 例题**
+
+<font color='cornflowerblue'>【例】</font>请编程求解以下模型，已知条件如右侧所示：
+$$
+min z = \sum_{i=1}^{6}\sum_{j=1}^{8}c_{ij}.x_{ij}
+\\\
+\\s.t.
+\begin{cases}x_1 \leq 100
+\\ S=a_ix_i, i=1,2,…,5
+\\\sum_{i=1}^{8}x_{ij}\leq a_i , j=1,2,...,6
+\\\sum_{i=1}^{6}x_{ij}= d_j , j=1,2,...,8
+\\x_{ij}\geq 0,i=1,2,...,6,j=1,2,...,8
+\end{cases}
+\\\
+\\a = 60,55,51,43,41,52;
+\\b = 35,37,22,32,41,32,43,38;
+\\c=6,2,6,7,4,2,5,8
+\\ 4,9,5,3,8,5,8,2
+\\ 5,2,1,9,7,4,3,3
+\\ 7,6,7,3,9,2,7,1
+\\ 2,3,9,5,7,2,6,5
+\\ 5,5,2,2,8,1,4,3
+$$
+<font color='red'>【解】</font>
+
+```
+sets:
+factory /1..6/ : a;
+plant / 1..8 / : b;
+coo (factory,plant): c , x;
+endsets
+
+data:
+a = 60,55,51,43,41,52;
+b = 35,37,22,32,41,32,43,38;
+c = 6,2,6,7,4,2,5,8
+ 	4,9,5,3,8,5,8,2
+ 	5,2,1,9,7,4,3,3
+ 	7,6,7,3,9,2,7,1
+ 	2,3,9,5,7,2,6,5
+ 	5,5,2,2,8,1,4,3;
+enddata
+
+min = @sum(coo(i,j):c(i,j)*x(i,j));
+!min = @sum( factory(i):@sum(plant(j):c(i,j) * x(i,j)) );
+
+@for ( factory(i) : @sum(plant(j):x(i,j)) <= a(i) );
+
+@for ( plant(j) : @sum(factory(i):x(i,j)) = b(j) );
+```
+
+# 第三章 罗辑运算符&内置函数
+
+### 一、运算符
+
+**1.1 算术运算符**
+
+<font color='cornflowerblue'>【例】</font>若 $x=2$ ，求解 $3x^{10}+6/(15-\sqrt x)$ 的数值
+
+```
+x = 2;
+y = 3*x^10 + 6/(15-x^(1/2));
+```
+
+**1.2 关系运算符**
+
+① 关系运算符往往用在约束条件中，用来指定约束条件左右两边必须满足的关系。
+②Lingo 只有三种关系运算符：“=”、“>=”以及“<=”。 
+	没有单独的“>”和“<”，若出现，Lingo 则视为省略了“=”。 若想严	格表达 A 大于 B，可以用以下方式：
+
+```
+B = 10;
+w = 0.00001;
+A - e > B;
+```
+
+**1.3 逻辑运算符**
+
+### 二、lingo内置函数
+
+**2.5 其他函数**
+
+`@wrap`
+
+使用方式：
+
+它需要两个参数，INDEX和LIMIT。
+
+作用：
+
+例如J=@WRAP(INDEX, LIMIT)，它会把J的值调整至满足1 <= J < LIMIT+1之间
+
+| 类别 |   函数名   |                      返回值 |
+| :--: | :--------: | --------------------------: |
+|      | @WRAP(x,y) | $x,x\leq y$<br /> $x-y,x>y$ |
+
